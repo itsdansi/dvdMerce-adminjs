@@ -1,8 +1,9 @@
-import {PrismaClient} from "@prisma/client";
+import {PrismaClient, User} from "@prisma/client";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import createError from "http-errors";
 import * as jwt from "../utils/jwt";
+import {CreateUserDto, LoginUserDto, UpdatePasswordDto} from "../dtos/auth.dto";
 
 dotenv.config();
 
@@ -15,29 +16,28 @@ interface UserData {
   [key: string]: any;
 }
 
-interface LoginData {
+interface LoginPayload {
   email: string;
   password: string;
 }
 
-class AuthService {
-  public static async register(data: UserData): Promise<UserData> {
-    // console.log("----------------> from auth service");
+interface UpdatePasswordPayload {}
 
+class AuthService {
+  public static async register(data: CreateUserDto): Promise<Omit<UserData, "password">> {
     const {email} = data;
     data.password = bcrypt.hashSync(data.password, 8);
     const user = await prisma.user.create({
       data,
     });
-    // console.log("----------------> from ");
+    const {password, ...rest} = user;
 
-    // data.accessToken = await jwt.signAccessToken(user);
-    return data;
+    return rest;
   }
 
   static async login(
-    data: LoginData
-  ): Promise<{user: Omit<UserData, "password">; accessToken: string}> {
+    data: LoginUserDto
+  ): Promise<{user: Omit<User, "password">; accessToken: string}> {
     const {email, password} = data;
     const user = await prisma.user.findUnique({
       where: {
@@ -56,10 +56,10 @@ class AuthService {
     return {user, accessToken};
   }
 
-  static async all(): Promise<UserData[] | any> {
-    const allUsers = await prisma.user.findMany();
-    return allUsers;
-  }
+  // static async all(): Promise<UserData[] | any> {
+  //   const allUsers = await prisma.user.findMany();
+  //   return allUsers;
+  // }
 }
 
 export default AuthService;
