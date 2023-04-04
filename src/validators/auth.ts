@@ -1,7 +1,6 @@
 import {Request, Response, NextFunction} from "express";
 import {LoginSchema, RegisterSchema} from "./schema/auth";
 import {validate} from "../utils/requestValidator";
-import {ObjectSchema} from "joi";
 
 export async function validateLoginSchema(
   req: Request,

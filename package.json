@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "license": "MIT",
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  },
   "scripts": {
     "dev": "nodemon --exec npx ts-node ./src/app.ts"
   },

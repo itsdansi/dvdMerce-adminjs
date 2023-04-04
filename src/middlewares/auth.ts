@@ -6,7 +6,7 @@ interface AuthRequest extends Request {
   user?: any;
 }
 
-const auth = async (
+const verifyToken = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
@@ -29,4 +29,22 @@ const auth = async (
   }
 };
 
-export default auth;
+export const isAdmin = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  try {
+    const user = req.user;
+
+    if (user && user.isAdmin) {
+      next(); // user is an admin, so pass control to the route handler
+    } else {
+      return res.status(403).json({
+        error: "Unauthorized user! Admin access required!.",
+      });
+    }
+  } catch (error) {
+    return res.status(403).json({
+      error: "Unauthorized user! You need to be an admin to access this resource.",
+    });
+  }
+};
+
+export default verifyToken;

@@ -4,12 +4,23 @@ import express from "express";
 
 import * as AdminJSPrisma from "@adminjs/prisma";
 import {PrismaClient} from "@prisma/client";
-import {DMMFClass} from "@prisma/client/runtime";
-// import {router} from "./routes/index"
+
 import router from "./routes/index";
 
 import * as errorHandler from "./middlewares/errorHandler";
 import {applyMiddleware} from "./middlewares/method-interceptor";
+
+// interface CustomPrismaClientOptions extends PrismaClientOptions {
+//   experimental?: {
+//     enableSoftDeletes?: boolean;
+//   };
+// }
+
+// const prisma = new PrismaClient({
+//   experimental: {
+//     enableSoftDeletes: true,
+//   },
+// } as CustomPrismaClientOptions);
 
 const prisma = new PrismaClient();
 
@@ -31,11 +42,8 @@ const start = async () => {
   const admin = new AdminJS({});
 
   const adminRouter = AdminJSExpress.buildRouter(admin);
-  app.use("/", router);
   app.use(admin.options.rootPath, adminRouter);
-
-  // redirect to routes/index.js
-  // const route = require("./routes");
+  app.use("/api", router);
 
   app.listen(PORT, () => {
     console.log(`AdminJS started on http://localhost:${PORT}${admin.options.rootPath}`);

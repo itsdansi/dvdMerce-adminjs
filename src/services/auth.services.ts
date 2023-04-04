@@ -36,7 +36,7 @@ class AuthService {
   }
 
   static async login(
-    data: LoginUserDto
+    data: LoginPayload
   ): Promise<{user: Omit<User, "password">; accessToken: string}> {
     const {email, password} = data;
     const user = await prisma.user.findUnique({
@@ -51,15 +51,10 @@ class AuthService {
     if (!checkPassword) {
       throw createError.Unauthorized("Invalid credentials!");
     }
-    // delete user.password;
-    const accessToken = await jwt.signAccessToken(user);
-    return {user, accessToken};
+    const {password: _, ...userWithoutPassword} = user; // Used destructuring and renaming to remove the password field
+    const accessToken = await jwt.signAccessToken(userWithoutPassword);
+    return {user: userWithoutPassword, accessToken};
   }
-
-  // static async all(): Promise<UserData[] | any> {
-  //   const allUsers = await prisma.user.findMany();
-  //   return allUsers;
-  // }
 }
 
 export default AuthService;

@@ -9,9 +9,6 @@ class AuthController {
   static register = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = await AuthService.register(req.body);
-
-      // console.log(user);
-
       res.status(200).json({
         success: true,
         message: "User created successfully",
@@ -41,19 +38,6 @@ class AuthController {
       next(createError(error.statusCode, error.message));
     }
   };
-
-  // static all = async (req: Request, res: Response, next: NextFunction) => {
-  //   try {
-  //     const users = await AuthService.all();
-  //     res.status(200).json({
-  //       status: true,
-  //       message: "All users",
-  //       data: users,
-  //     });
-  //   } catch (error: any) {
-  //     next(createError(error.statusCode, error.message));
-  //   }
-  // };
 }
 
 export default AuthController;

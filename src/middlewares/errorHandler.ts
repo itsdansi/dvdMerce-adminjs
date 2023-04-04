@@ -34,7 +34,7 @@ export function methodNotAllowed(req: Request, res: Response) {
 }
 
 /**
- * To handle errors from body parser for cases such as invalid JSON sent through
+ * Handels errors from body parser for cases such as invalid JSON sent through
  * the body.
  *
  *
@@ -100,6 +100,14 @@ export function genericErrorHandler(
   res.status(error.code).json({error});
 }
 
+/**
+ *  * Handels validation errors thrown form Joi.
+ *
+ * @param err
+ * @param req
+ * @param res
+ * @param next
+ */
 export function errorHandler(
   err: Error,
   req: Request,
