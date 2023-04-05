@@ -2,16 +2,6 @@ import {Prisma, PrismaClient} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// interface Movie {
-//   title: string;
-//   plot: string;
-//   genre?: number;
-//   userId: number;
-//   imageUrl: string;
-//   releaseDate: Date;
-//   status: boolean;
-// }
-
 export type Movie = {
   id: number;
   title: string;
@@ -35,13 +25,29 @@ class MovieService {
     return movies as Movie[];
   }
 
-  static async getMovieById(genreId: number): Promise<Movie | null> {
+  static async getMovieById(movieId: number): Promise<Movie | null> {
     const movie = await prisma.movie.findUnique({
-      where: {id: genreId},
+      where: {id: movieId},
     });
 
     return movie as Movie;
   }
+
+  static async getMovieByGenreId(genreId: number): Promise<Movie[]> {
+    const movie = await prisma.movie.findMany({
+      where: {genreId},
+    });
+
+    return movie;
+  }
+
+  // static async getMovieByGenreId(genreId: number): Promise<Movie[]> {
+  //   const movie = await prisma.movie.findMany({
+  //     where: {genreId},
+  //   });
+
+  //   return movie;
+  // }
 
   static async createMovie(payload: Partial<MovieCreateInput>): Promise<Movie> {
     const {title, plot, user, genre, imageUrl, releaseDate} = payload as any;

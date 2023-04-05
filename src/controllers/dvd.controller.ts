@@ -62,6 +62,34 @@ class DvdController {
   };
 
   /**
+   * Controller function to get all Dvd of a movie
+   *
+   * @param req
+   * @param res
+   * @param next
+   */
+
+  static getDvdByMovieId = async (req: Request, res: Response, next: NextFunction) => {
+    const movieId = parseInt(req.params.id);
+
+    try {
+      const dvd = await DvdService.getDvdByMovieId(movieId);
+
+      if (!dvd) {
+        throw createError(404, `Dvd having movieId ${movieId} not found`);
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Dvd fetched successfully!",
+        data: dvd,
+      });
+    } catch (error: HttpError | any) {
+      next(createError(error.statusCode, error.message));
+    }
+  };
+
+  /**
    * Controller function to create a new dvd
    *
    * @param req

@@ -4,22 +4,22 @@ import {validateArtistSchema} from "../validators/artist";
 import verifyToken, {isAdmin} from "../middlewares/auth";
 const router: Router = Router();
 
-router.get("/", ArtistController.getAllArtists);
+router.get("/artists", ArtistController.getAllArtists);
 router.post(
-  "/",
+  "/artist",
   verifyToken,
   isAdmin,
   validateArtistSchema,
   ArtistController.createArtist
 );
-router.get("/:id", ArtistController.getArtistById);
+router.get("/artist/:id", ArtistController.getArtistById);
 router.patch(
-  "/:id",
+  "/artist/:id",
   verifyToken,
   isAdmin,
   validateArtistSchema,
   ArtistController.updateArtist
 );
-router.delete("/:id", verifyToken, isAdmin, ArtistController.deleteArtist);
+router.delete("/artist/:id", verifyToken, isAdmin, ArtistController.deleteArtist);
 
 export default router;

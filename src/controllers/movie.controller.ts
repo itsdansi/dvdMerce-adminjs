@@ -60,6 +60,34 @@ class MovieController {
   };
 
   /**
+   * Controller function to get a single movie by Id
+   *
+   * @param req
+   * @param res
+   * @param next
+   */
+
+  static getMovieByGenreId = async (req: Request, res: Response, next: NextFunction) => {
+    const genreId = parseInt(req.params.id);
+
+    try {
+      const movie = await MovieService.getMovieByGenreId(genreId);
+
+      if (!movie) {
+        throw createError(404, `Movie having genreId ${genreId} not found`);
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Movie fetched successfully!",
+        data: movie,
+      });
+    } catch (error: HttpError | any) {
+      next(createError(error.statusCode, error.message));
+    }
+  };
+
+  /**
    * Controller function to create a new movie
    *
    * @param req

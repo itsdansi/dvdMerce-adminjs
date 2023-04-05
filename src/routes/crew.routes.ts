@@ -4,11 +4,17 @@ import {validateCreateCrew, validateUpdateCrew} from "../validators/movie_crew";
 import verifyToken, {isAdmin} from "../middlewares/auth";
 const router: Router = Router();
 
-router.get("/", CrewController.getAllArtists);
-router.post("/", verifyToken, isAdmin, validateCreateCrew, CrewController.createCrew);
-router.get("/movie/:id", CrewController.getCrewsbyMovieId);
-router.get("/:id", CrewController.getArtistById);
-router.patch("/:id", verifyToken, isAdmin, validateUpdateCrew, CrewController.updateCrew);
-router.delete("/:id", verifyToken, isAdmin, CrewController.deleteCrew);
+router.get("/crews/", CrewController.getAllArtists);
+router.post("/crew", verifyToken, isAdmin, validateCreateCrew, CrewController.createCrew);
+router.get("/crews/movie/:id", CrewController.getCrewsbyMovieId);
+router.get("/crew/:id", CrewController.getCrewById);
+router.patch(
+  "/crews/:id",
+  verifyToken,
+  isAdmin,
+  validateUpdateCrew,
+  CrewController.updateCrew
+);
+router.delete("/crews/:id", verifyToken, isAdmin, CrewController.deleteCrew);
 
 export default router;

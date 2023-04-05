@@ -4,22 +4,23 @@ import {validateCreateMovieSchema, validateUpdateSchema} from "../validators/mov
 import verifyToken, {isAdmin} from "../middlewares/auth";
 const router: Router = express.Router();
 
-router.get("/", MovieController.getAllMovies);
+router.get("/movies", MovieController.getAllMovies);
 router.post(
-  "/",
+  "/movie",
   verifyToken,
   isAdmin,
   validateCreateMovieSchema,
   MovieController.createMovie
 );
-router.get("/:id", MovieController.getMovieById);
+router.get("/movies/genre/:id", MovieController.getMovieByGenreId);
+router.get("/movie/:id", MovieController.getMovieById);
 router.patch(
-  "/:id",
+  "/movie/:id",
   verifyToken,
   isAdmin,
   validateUpdateSchema,
   MovieController.updateMovie
 );
-router.delete("/:id", verifyToken, isAdmin, MovieController.deleteMovie);
+router.delete("/movie/:id", verifyToken, isAdmin, MovieController.deleteMovie);
 
 export default router;

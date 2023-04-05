@@ -24,7 +24,7 @@ export type DVDCreateInput = Prisma.DVDCreateInput;
 class DvdService {
   static async getAllDvds(filter?: any): Promise<Dvd[]> {
     let dvds = await prisma.dVD.findMany();
-    return dvds as Dvd[];
+    return dvds;
   }
 
   static async getDvdById(genreId: number): Promise<Dvd | null> {
@@ -32,12 +32,19 @@ class DvdService {
       where: {id: genreId},
     });
 
-    return dvd as Dvd;
+    return dvd;
+  }
+
+  static async getDvdByMovieId(movieId: number): Promise<Dvd[] | null> {
+    const dvd = await prisma.dVD.findMany({
+      where: {movieId},
+    });
+
+    return dvd;
   }
 
   static async createDvd(payload: Partial<DVDCreateInput>): Promise<Dvd> {
     const {title, desc, user, movie, sku, length, size, price} = payload as any;
-    //  const parsedPrice = (price),
 
     const dvd = await prisma.dVD.create({
       data: {

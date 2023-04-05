@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "8c1baf67-8fc5-4a9b-9ec3-d59854f28f62",
+		"name": "AdminJs-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25442240"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Dansi",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abc@gmaiil.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "66666666",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Dansi",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "abc@gmaiil.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "66666666",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "dojoohnnn@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "11111",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Update Admin status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "isAdmin",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Get all genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/genres",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/genre/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"genre",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a genre",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "updated title",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/genre/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"genre",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a genre",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "updated title",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/genre/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"genre",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a genre",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Horror",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/genre",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "Get all movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/movies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a movie by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/movie/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movie by GenreId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/movies/genre/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movies",
+								"genre",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a movie by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/movie/10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movie",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a movie by Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "fast and furious",
+									"type": "text"
+								},
+								{
+									"key": "imageUrl",
+									"value": "abc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/movie/11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movie",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"title\":\"test 9\",\n\"plot\":\"test plot describing jpt of of the box\",\n\"genreId\":1,\n\"imageUrl\":\"https://pixabay.com/illustrations/elon-musk-entrepreneur-businessman-6949267/\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/movie",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DVD",
+			"item": [
+				{
+					"name": "Get all dvds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dvds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a dvd by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dvd/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvd",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all dvd of a movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dvds/movie/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvds",
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a dvd by Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Edited title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dvd/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvd",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a dvd by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dvd/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvd",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a dvd",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"title\":\"Random\",\n\"desc\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. \",\n\"sku\":100,\n\"price\":50,\n\"movieId\":11,\n\"length\":\"2h30m\",\n\"size\":\"1.2 GB\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dvd",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dvd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rating",
+			"item": [
+				{
+					"name": "Get all ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/ratings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a rating by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rating/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rating",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\":1,\n    \"movieId\":11\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rating",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rating"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a rating by Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\":1,\n    \"movieId\":11\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rating/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rating",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Get all wishlists of current user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/wishlists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wishlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all wishlists for Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/wishlists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"wishlists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a wishlist by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wishlist/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wishlist",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove dvd from wishlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wishlist/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wishlist",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a wishlist by Id Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"movieId\": 11,\n    \"userId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/wishlist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "Get all artist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an artist by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artist/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Tom\",\n    \"lastName\":\"Holand\",\n    \"awards\": \"Best Child debut award\",\n    \"dob\": \"1998-03-29 11:55:26.26\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Artist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Artist by ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Michale\",\n    \"lastName\":\"Holand\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MovieCrew",
+			"item": [
+				{
+					"name": "Get all crew",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/crews",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a crew member",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/crew/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crew",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all crew members of a movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/crews/movie/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crews",
+								"movie",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new crew member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\":\"Actor\",\n    \"characterName\":\"Sharuk Malla\",\n    \"artistId\":4,\n    \"movieId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/crew",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crew"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update movie crew data",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"characterName\":\"Tim Smit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/crew/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crew",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a movie crew",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"characterName\":\"Tim Smit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/crew/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crew",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkb2pvb2hubm5AZ21haWwuY29tIiwibmFtZSI6IkRhbnNpIiwiaXNBZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMy0wMy0yOVQxMTo1NToyNi4yNjBaIiwidXBkYXRlZEF0IjpudWxsLCJpYXQiOjE2ODA1OTIyNzl9.0vRKrMMmtzWi7C_Lr0MKWmeRVgw0LXiNjdcQFkVF9ZM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api"
+		}
+	]
+}

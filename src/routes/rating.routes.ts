@@ -1,14 +1,14 @@
-import express, {Request, Response, NextFunction, Router} from "express";
+import {Router} from "express";
 import RatingController from "../controllers/rating.controller";
 import {validateRatingSchema} from "../validators/rating";
-import verifyToken, {isAdmin} from "../middlewares/auth";
-const router: Router = express.Router();
+import verifyToken from "../middlewares/auth";
+const router: Router = Router();
 
-router.get("/", RatingController.getAllRatings);
-router.post("/", verifyToken, validateRatingSchema, RatingController.createRating);
-router.get("/:id", RatingController.getRatingById);
+router.get("/ratings", RatingController.getAllRatings);
+router.post("/rating", verifyToken, validateRatingSchema, RatingController.createRating);
+router.get("/rating/:id", RatingController.getRatingById);
 router.patch(
-  "/:id",
+  "/rating/:id",
   verifyToken,
   validateRatingSchema,
   RatingController.updateRatingById

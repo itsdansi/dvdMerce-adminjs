@@ -4,16 +4,23 @@ import {validateCreateDvdSchema, validateUpdateDvdSchema} from "../validators/dv
 import verifyToken, {isAdmin} from "../middlewares/auth";
 const router: Router = express.Router();
 
-router.get("/", DvdController.getAllDvds);
-router.post("/", verifyToken, isAdmin, validateCreateDvdSchema, DvdController.createDvd);
-router.get("/:id", DvdController.getDvdById);
+router.get("/dvds", DvdController.getAllDvds);
+router.post(
+  "/dvd",
+  verifyToken,
+  isAdmin,
+  validateCreateDvdSchema,
+  DvdController.createDvd
+);
+router.get("/dvds/movie/:id", DvdController.getDvdByMovieId);
+router.get("/dvd/:id", DvdController.getDvdById);
 router.patch(
-  "/:id",
+  "/dvd/:id",
   verifyToken,
   isAdmin,
   validateUpdateDvdSchema,
   DvdController.updateDvdById
 );
-router.delete("/:id", verifyToken, isAdmin, DvdController.deleteDvd);
+router.delete("/dvd/:id", verifyToken, isAdmin, DvdController.deleteDvd);
 
 export default router;

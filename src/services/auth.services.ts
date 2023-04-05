@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import createError from "http-errors";
 import * as jwt from "../utils/jwt";
-import {CreateUserDto, LoginUserDto, UpdatePasswordDto} from "../dtos/auth.dto";
+// import {UserData, LoginUserDto, UpdatePasswordDto} from "../dtos/auth.dto";
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ interface LoginPayload {
 interface UpdatePasswordPayload {}
 
 class AuthService {
-  public static async register(data: CreateUserDto): Promise<Omit<UserData, "password">> {
+  public static async register(data: UserData): Promise<Omit<UserData, "password">> {
     const {email} = data;
     data.password = bcrypt.hashSync(data.password, 8);
     const user = await prisma.user.create({

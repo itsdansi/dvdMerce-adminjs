@@ -66,7 +66,7 @@ class CrewController {
    * @param next
    */
 
-  static getArtistById = async (req: Request, res: Response, next: NextFunction) => {
+  static getCrewById = async (req: Request, res: Response, next: NextFunction) => {
     const crewId = parseInt(req.params.id);
 
     try {
