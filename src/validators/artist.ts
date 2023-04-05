@@ -1,15 +1,15 @@
 import {Request, Response, NextFunction} from "express";
-import {GenreSchema} from "./schema/genre";
+import {artistSchema} from "./schema/artist";
 import {validate} from "../utils/requestValidator";
 
-export async function validateGenereSchema(
+export async function validateArtistSchema(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
     const {body} = req;
-    await validate(body, GenreSchema as any);
+    await validate(body, artistSchema as any);
     next();
   } catch (error) {
     next(error);

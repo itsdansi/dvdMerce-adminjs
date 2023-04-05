@@ -5,6 +5,8 @@ import movieRoute from "./movie.routes";
 import dvdRoute from "./dvd.routes";
 import ratingRoute from "./rating.routes";
 import wishlistRoute from "./wishlist.routes";
+import artistRoute from "./artist.routes";
+import crewRoute from "./crew.routes";
 import createError, {HttpError} from "http-errors";
 
 const router: Router = Router();
@@ -15,6 +17,8 @@ router.use("/movie", movieRoute);
 router.use("/dvd", dvdRoute);
 router.use("/rating", ratingRoute);
 router.use("/wishlist", wishlistRoute);
+router.use("/artist", artistRoute);
+router.use("/crew", crewRoute);
 
 router.use(async (req: Request, res: Response, next: NextFunction) => {
   next(createError.NotFound("Route not Found"));
