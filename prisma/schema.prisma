@@ -13,10 +13,12 @@ model User {
   name  String?
   password String
   isAdmin Boolean @default(false)
+  genres Genre[]
   movies Movie[]
   dvds     DVD[]
   ratings     Rating[]
   artists  Artist[]
+  wishlists Wishlist[]
   createdAt DateTime @default(now())
   updatedAt DateTime?
 }
@@ -24,6 +26,8 @@ model User {
 model Genre {
   id          Int      @id @default(autoincrement())
   title       String
+   user    User?    @relation(fields: [userId], references: [id])
+  userId  Int?
   movies     Movie[]
   deleted Boolean @default(false)
   deletedAt DateTime?
@@ -56,12 +60,14 @@ model DVD {
   title       String
   desc        String?
   sku         Int
-  length      String //2h35m
-  size        String  //2.5GB or 950MB
+  length      String       // 2h45m
+  size        String     // 1.9GB
+  price       Float
   movie       Movie? @relation(fields: [movieId], references: [id])
   movieId Int?
   user    User?    @relation(fields: [userId], references: [id])
   userId  Int?
+  wishlists Wishlist[]
   status   Boolean @default(true)
   deleted Boolean @default(false)
   deletedAt DateTime?
@@ -77,6 +83,7 @@ model Rating {
   user    User?    @relation(fields: [userId], references: [id])
   userId  Int?
   createdAt DateTime @default(now())
+  updatedAt DateTime?
 }
 
 model Artist {
@@ -91,5 +98,16 @@ model Artist {
   createdAt DateTime @default(now())
   updatedAt DateTime?
 }
+
+model Wishlist {
+  id          Int      @id @default(autoincrement())
+  dvd         DVD?      @relation(fields: [dvdId], references: [id])
+  dvdId       Int?
+  user    User?    @relation(fields: [userId], references: [id])
+  userId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+}
+
 
 
