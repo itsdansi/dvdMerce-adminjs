@@ -43,13 +43,6 @@ class MovieService {
     return movie as Movie;
   }
 
-  //   static async createMovie(data: Movie): Promise<Movie> {
-  //     const movie = await prisma.movie.create({
-  //       data,
-  //     });
-  //     return movie as Movie;
-  //   }
-
   static async createMovie(payload: Partial<MovieCreateInput>): Promise<Movie> {
     const {title, plot, user, genre, imageUrl, releaseDate} = payload as any;
 

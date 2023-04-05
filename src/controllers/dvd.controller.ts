@@ -1,5 +1,7 @@
 import {Request, Response, NextFunction} from "express";
-import MovieService from "../services/movie.services";
+// import DvdService from "../services/movie.services";
+import DvdService from "../services/dvd.services";
+
 import createError, {HttpError} from "http-errors";
 import {Prisma} from "@prisma/client";
 import {getCurrentUserId} from "../middlewares/getCurrentUserId";
@@ -8,21 +10,21 @@ interface AuthRequest extends Request {
   user?: any;
 }
 
-class MovieController {
+class DvdController {
   /**
-   * Controller function to fetch all movies
+   * Controller function to fetch all dvds
    *
-   * @param req
+   * @param req ]
    * @param res
    * @param next
    */
-  static getAllMovies = async (req: Request, res: Response, next: NextFunction) => {
+  static getAllDvds = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const movies = await MovieService.getAllMovies();
+      const dvds = await DvdService.getAllDvds();
       res.status(200).json({
         success: true,
-        message: "Movies fetched successfully!",
-        data: movies,
+        message: "Dvds fetched successfully!",
+        data: dvds,
       });
     } catch (error: HttpError | any) {
       console.log(error);
@@ -32,27 +34,27 @@ class MovieController {
   };
 
   /**
-   * Controller function to get a single movie by Id
+   * Controller function to get a single dvd by Id
    *
    * @param req
    * @param res
    * @param next
    */
 
-  static getMovieById = async (req: Request, res: Response, next: NextFunction) => {
-    const movieId = parseInt(req.params.id);
+  static getDvdById = async (req: Request, res: Response, next: NextFunction) => {
+    const dvdId = parseInt(req.params.id);
 
     try {
-      const movie = await MovieService.getMovieById(movieId);
+      const dvd = await DvdService.getDvdById(dvdId);
 
-      if (!movie) {
-        throw createError(404, `Movie with ID ${movieId} not found`);
+      if (!dvd) {
+        throw createError(404, `Dvd with ID ${dvdId} not found`);
       }
 
       res.status(200).json({
         success: true,
-        message: "Movie fetched successfully!",
-        data: movie,
+        message: "Dvd fetched successfully!",
+        data: dvd,
       });
     } catch (error: HttpError | any) {
       next(createError(error.statusCode, error.message));
@@ -60,26 +62,27 @@ class MovieController {
   };
 
   /**
-   * Controller function to create a new movie
+   * Controller function to create a new dvd
    *
    * @param req
    * @param res
    * @param next
    */
-  static createMovie = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  static createDvd = async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const {title, plot, genreId, imageUrl, releaseDate} = req.body;
-      // getting current userID
+      const {title, desc, sku, length, size, price, movieId} = req.body;
       const currentUser = await getCurrentUserId(req, res, () => {});
       const userId = req.user.id;
 
-      const movie = await MovieService.createMovie({
+      const dvd = await DvdService.createDvd({
         title,
-        plot,
-        imageUrl,
-        releaseDate,
-        genre: {
-          connect: {id: genreId},
+        desc,
+        sku,
+        length,
+        size,
+        price,
+        movie: {
+          connect: {id: movieId},
         },
         user: {
           connect: {
@@ -90,8 +93,8 @@ class MovieController {
 
       res.status(201).json({
         success: true,
-        message: "Movie created successfully!",
-        data: movie,
+        message: "Dvd created successfully!",
+        data: dvd,
       });
     } catch (error: HttpError | any) {
       console.log(error);
@@ -110,34 +113,34 @@ class MovieController {
   };
 
   /**
-   * Controller function to update a movie details
+   * Controller function to update a dvd details
    *
    * @param req
    * @param res
    * @param next
    */
-  static updateMovie = async (req: Request, res: Response, next: NextFunction) => {
-    const movieId = parseInt(req.params.id);
+  static updateDvdById = async (req: Request, res: Response, next: NextFunction) => {
+    const dvdId = parseInt(req.params.id);
     const updatePayload = req.body;
 
     try {
-      const movie = await MovieService.updateMovieById(movieId, updatePayload);
+      const dvd = await DvdService.updateDvdById(dvdId, updatePayload);
 
-      if (!movie) {
-        throw createError(404, `Movie with ID ${movieId} not found`);
+      if (!dvd) {
+        throw createError(404, `Dvd with ID ${dvdId} not found`);
       }
 
       res.status(200).json({
         success: true,
-        message: "Movie updated successfully!",
-        data: movie,
+        message: "Dvd updated successfully!",
+        data: dvd,
       });
     } catch (error: HttpError | any) {
       const prismaError =
         error instanceof Prisma.PrismaClientKnownRequestError ? error : undefined;
 
       if (prismaError && prismaError.code == "P2025") {
-        next(createError(404, `Movie with ID ${movieId} not found`));
+        next(createError(404, `Dvd with ID ${dvdId} not found`));
       } else {
         next(createError(error.statusCode, error.message));
       }
@@ -145,32 +148,33 @@ class MovieController {
   };
 
   /**
-   * Controller function to delete a movie
+   * Controller function to delete a dvd
    *
    * @param req
    * @param res
    * @param next
    */
-  static deleteMovie = async (req: Request, res: Response, next: NextFunction) => {
-    const movieId = parseInt(req.params.id);
+  static deleteDvd = async (req: Request, res: Response, next: NextFunction) => {
+    const dvdId = parseInt(req.params.id);
 
     try {
-      const movie = await MovieService.deleteMovie(movieId);
+      const dvd = await DvdService.deleteDvd(dvdId);
 
-      if (!movie) {
-        throw createError(404, `Movie with ID ${movieId} not found`);
+      if (!dvd) {
+        throw createError(404, `Dvd with ID ${dvdId} not found`);
       }
 
-      res.status(200).json({
+      res.status(204).json({
         success: true,
-        message: `Movie  with ID ${movieId} deleted successfully!`,
+        code: 204,
+        message: `Dvd  with ID ${dvdId} deleted successfully!`,
       });
     } catch (error: HttpError | any) {
       const prismaError =
         error instanceof Prisma.PrismaClientKnownRequestError ? error : undefined;
 
       if (prismaError && prismaError.code == "P2025") {
-        next(createError(404, `Movie with ID ${movieId} not found`));
+        next(createError(404, `Dvd with ID ${dvdId} not found`));
       } else {
         next(createError(error.statusCode, error.message));
       }
@@ -178,4 +182,4 @@ class MovieController {
   };
 }
 
-export default MovieController;
+export default DvdController;
